@@ -8,27 +8,27 @@ namespace PiposBefLoaderCore
 {
     public class CBefTextRowItem
     {
-        long RowID { get; set; }
-        long RutID { get; set; }
-        int Kommun { get; set; }
-        int Lan { get; set; }
-        int Alder { get; set; }   
-        int Kon { get; set; }
-        int Totalt_2000 { get; set; }
-        int Totalt_2001 { get; set; }
-        int Totalt_2002 { get; set; }
-        int Totalt_2003 { get; set; }
-        int Totalt_2004 { get; set; }
-        int Totalt_2005 { get; set; }
-        int Totalt_2006 { get; set; }
-        int Totalt_2007 { get; set; }
-        int Totalt_2008 { get; set; }
-        int Totalt_2009 { get; set; }
-        int Totalt_2010 { get; set; }
-        int Totalt_2011 { get; set; }
-        int Totalt_2012 { get; set; }
-        int Totalt_2013 { get; set; }
-        int Totalt_2014 { get; set; }
+        public long RowID { get; set; }
+        public long RutID { get; set; }
+        public int Kommun { get; set; }
+        public int Lan { get; set; }
+        public int Alder { get; set; }   
+        public int Kon { get; set; }
+        public int Totalt_2000 { get; set; }
+        public int Totalt_2001 { get; set; }
+        public int Totalt_2002 { get; set; }
+        public int Totalt_2003 { get; set; }
+        public int Totalt_2004 { get; set; }
+        public int Totalt_2005 { get; set; }
+        public int Totalt_2006 { get; set; }
+        public int Totalt_2007 { get; set; }
+        public int Totalt_2008 { get; set; }
+        public int Totalt_2009 { get; set; }
+        public int Totalt_2010 { get; set; }
+        public int Totalt_2011 { get; set; }
+        public int Totalt_2012 { get; set; }
+        public int Totalt_2013 { get; set; }
+        public int Totalt_2014 { get; set; }
 
         public static void read5RowsWrite5Rows(string inDataFileFullPath,string outDataFileFullPath)
         {
@@ -102,5 +102,6 @@ namespace PiposBefLoaderCore
                 rowId++;
             }
         }
+
     }
 }
