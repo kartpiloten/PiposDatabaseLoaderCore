@@ -1,22 +1,36 @@
 ﻿using PiposBefLoaderCore;
 using System.Xml.Serialization;
 
-namespace MyProject;
+namespace PiposBefLoaderCore;
 class Program
 {
     static void Main(string[] args)
     {
         Dictionary<long, CBefTextRowItem> aBefDic = new Dictionary<long, CBefTextRowItem>();
-        
-        CBefTextRowItem.readBefFile2000_2014("Z:\\Projekt 2022\\SCB_2022\\LeveransSept28\\Statistik till plattformen Pipos 2022\\Lev2\\rev_Tab1_TotBefMGeo.txt",ref  aBefDic);
+
+        //CBefTextRowItem.read5RowsWrite5Rows("Z:\\Projekt 2023\\SCBLeverans\\Befolkning20230228\\Statistik till plattformen  Pipos 2023\\BefMedGeografi_txt\\BefMedGeo2022.txt", "Z:\\Projekt 2022\\SCB_2022\\tabortGeo.txt");
+
+        CBefTextRowItem.readBefFile2000_2014("Y:\\MASTERDB_LOAD\\Grunddata\\HelaLandet\\Befolkning\\Bef2000_2014.txt", ref  aBefDic);
+        // MapInfo 
+        CBefTextRowItem.readBefFile2022("Y:\\MASTERDB_LOAD\\Grunddata\\HelaLandet\\Befolkning\\Bef2022.txt", "Y:\\MASTERDB_LOAD\\Grunddata\\HelaLandet\\Befolkning\\BefUtanGeo2022.txt", ref aBefDic);
+
         //CBefTextRowItem.read5RowsWrite5Rows("Z:\\Projekt 2022\\SCB_2022\\LeveransSept28\\Statistik till plattformen Pipos 2022\\Lev2\\rev_Tab1_TotBefMGeo.txt", "Z:\\Projekt 2022\\SCB_2022\\tabortGeo.txt");
-        CBefTextRowItem.readBefFile2000_2014("Z:\\Projekt 2022\\SCB_2022\\LeveransSept28\\Statistik till plattformen Pipos 2022\\Lev2\\rev_Tab2_TotBefUtanGeo.txt", ref aBefDic);
+        //CBefTextRowItem.readBefFile2000_2014("Z:\\Projekt 2022\\SCB_2022\\LeveransSept28\\Statistik till plattformen Pipos 2022\\Lev2\\rev_Tab2_TotBefUtanGeo.txt", ref aBefDic);
         //CBefTextRowItem.read5RowsWrite5Rows("Z:\\Projekt 2022\\SCB_2022\\LeveransSept28\\Statistik till plattformen Pipos 2022\\Lev2\\rev_Tab2_TotBefUtanGeo.txt", "Z:\\Projekt 2022\\SCB_2022\\tabortutanGeo.txt");
         List < Dictionary<string, CBefMasterStrukture> > MasterDicList = new List<Dictionary<string, CBefMasterStrukture>>();
+        //Build the skeleton for Masterstructure
+        for (int i = 0; i < 23; i++)
+        {
+            Dictionary<string, CBefMasterStrukture> aBefMasterStructureDic = new Dictionary<string, CBefMasterStrukture>(); //index Ruta_250,tile_id,age
+
+            MasterDicList.Add(aBefMasterStructureDic);
+        }
         CBefMasterStrukture.fillMasterDic(aBefDic,ref MasterDicList);
+
 
         CBefMasterStrukture.printToFile("D:\\Source\\PiposDatabaseLoaderCore\\DATA\\Befolkning", MasterDicList);
 
+        //CPU_DBUtils.CreateSchema(CPU_AppParameters.connStringDB(),"testschema");
 
         Console.WriteLine("Done!");
     }
@@ -47,6 +61,7 @@ class Program
 2019	5 195 814
 2020	5 222 847
 2021	5 260 707
+2022    5 298 324
 Kvinnor	 
 2000	4 490 039
 2001	4 500 683
@@ -70,4 +85,6 @@ Kvinnor
 2019	5 131 775
 2020	5 156 448
 2021	5 191 619
+2022    5 223 232
+
  */
